@@ -4,24 +4,39 @@ import time
 import numpy as np
 import math
 
-
+"""モジュールとして import することも、このプログラム単体で使用することもできます。
+if __name__ == "__main__":
+の中にServoクラスの使い方の例を書いています。"""
+#======================================================#
 #SG90というサーボモーターを基準に作成されています
 #https://akizukidenshi.com/catalog/g/gM-08761/
 #SG90はPWMサイクル:20ms(=50Hz) 制御パルス:0.5ms〜2.4ms
 #トルク:1.8kgf・cm 制御角:±約90°(180°)
-baseTime = 0.080
-variTime = 0.330 - baseTime
-fullTime = baseTime + variTime #SG90は60度で0.1秒なので180度で0.3秒ですが少し多めにしています
+#======================================================#
+#=====グローバル変数の説明=============================#
 #fullTimeはサーボモーターが180度移動するときにかかる時間です
 #このプログラムではモーターの移動量によってかかる時間を調整しています
 #varTimeは例えば90度分の移動なら半分になりますが
 #baseTimeはモーターの移動量によらず常に一定です
 #なので移動量が0度であっても、baseTimeは不変です
 #【例】移動量が90度の場合は varTime * ( 90 / 180 ) + baseTime 秒になります
+#======================================================#
+baseTime = 0.080
+variTime = 0.330 - baseTime
+fullTime = baseTime + variTime #SG90は60度で0.1秒なので180度で0.3秒ですが少し多めにしています
+#=====グローバル変数の説明=============================#
+#PWM制御パルスの割合が必要なので計算しています
+#minPulseTime/maxPulseTimeは
+#======================================================#
 PWMCyclems = 20.0
-minPulse = (0.5 / PWMCyclems) * 100 # -> 2.5%
-maxPulse = (2.4 / PWMCyclems) * 100 # -> 12% 
+minPulseTime = 0.5 # ms
+maxPulseTime = 2.4 # ms
+minPulse = (minPulseTime / PWMCyclems) * 100 # -> 2.5%
+maxPulse = (maxPulseTime / PWMCyclems) * 100 # -> 12% 
 class Servo():
+    """ gpioNumber:GPIOの
+
+    """
 
     def __init__(self, gpioNumber=4, initAngle=0, isDebug=False):
         #GPIO4を制御パルスの出力に設定
