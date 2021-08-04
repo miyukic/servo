@@ -4,9 +4,11 @@ import time
 import numpy as np
 import math
 
-"""モジュールとして import することも、このプログラム単体で使用することもできます。
+"""
+モジュールとして import することも、このプログラム単体で使用することもできます。
 if __name__ == "__main__":
-の中にServoクラスの使い方の例を書いています。"""
+の中にServoクラスの使い方の例を書いています。
+"""
 #======================================================#
 #SG90というサーボモーターを基準に作成されています
 #https://akizukidenshi.com/catalog/g/gM-08761/
@@ -26,7 +28,7 @@ variTime = 0.330 - baseTime
 fullTime = baseTime + variTime #SG90は60度で0.1秒なので180度で0.3秒ですが少し多めにしています
 #=====グローバル変数の説明=============================#
 #PWM制御パルスの割合が必要なので計算しています
-#minPulseTime/maxPulseTimeは
+#minPulseTime/maxPulseTime
 #======================================================#
 PWMCyclems = 20.0
 minPulseTime = 0.5 # ms
@@ -34,7 +36,9 @@ maxPulseTime = 2.4 # ms
 minPulse = (minPulseTime / PWMCyclems) * 100 # -> 2.5%
 maxPulse = (maxPulseTime / PWMCyclems) * 100 # -> 12% 
 class Servo():
-    """ gpioNumber:GPIOの
+    """ 
+    gpioNumber:GPIO
+    initAngle:
 
     """
 
