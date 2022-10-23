@@ -30,6 +30,7 @@ fullTime = baseTime + variTime #SG90は60度で0.1秒なので180度で0.3秒で
 #PWM制御パルスの割合が必要なので計算しています
 #minPulseTime/maxPulseTime
 #======================================================#
+#改修
 PWMCyclems = 20.0
 minPulseTime = 0.5 # ms
 maxPulseTime = 2.4 # ms
