@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # coding: UTF-8
 import RPi.GPIO as GPIO
 import time
@@ -120,7 +121,7 @@ class Servo():
 
 if __name__ == "__main__":
     GPIO.setmode(GPIO.BCM)
-    s = Servo(gpioNumber=4)
+    s = Servo(gpioNumber=14)
     s.changeAngle(0)
     time.sleep(1)
     #while (True):
