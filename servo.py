@@ -121,7 +121,7 @@ class Servo():
 
 if __name__ == "__main__":
     GPIO.setmode(GPIO.BCM)
-    s = Servo(gpioNumber=14)
+    s = Servo(gpioNumber=16)
     s.changeAngle(0)
     time.sleep(1)
     #while (True):
