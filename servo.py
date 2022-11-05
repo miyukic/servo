@@ -24,8 +24,8 @@ if __name__ == "__main__":
 #なので移動量が0度であっても、baseTimeは不変です
 #【例】移動量が90度の場合は varTime * ( 90 / 180 ) + baseTime 秒になります
 #======================================================#
-baseTime = 0.080
-variTime = 0.330 - baseTime
+baseTime = 0.202
+variTime = 0.550 - baseTime
 fullTime = baseTime + variTime #SG90は60度で0.1秒なので180度で0.3秒ですが少し多めにしています
 #=====グローバル変数の説明=============================#
 #PWM制御パルスの割合が必要なので計算しています
@@ -130,14 +130,19 @@ if __name__ == "__main__":
     #    else:
     #        break
 
+    angle = 0
     while (True):
-        a = 0
-        try:
-            print("角度を入力してください:")
-            a = int(input())
-        except:
-            break
-        s.changeAngle(a)
+        s.changeAngle(angle)
+        angle = angle % 180
+        angle = angle + 5
+        time.sleep(1)
+        #a = 0
+        #try:
+        #    print("角度を入力してください:")
+        #    a = int(input())
+        #except:
+        #    break
+        #s.changeAngle(a)
     s.cleanup()
 
 
