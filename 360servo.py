@@ -98,7 +98,25 @@ class Servo():
         #time.sleep(0.007)
 
 def main():
-    servo = Servo()
+    #GPIO4を制御パルスの出力に設定
+    self.gpioNumber = gpioNumber
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(self.gpioNumber, GPIO.OUT)
+
+    #GPIO.PWM( [ピン番号] , [周波数Hz] )
+    flag = True
+    self.servo = GPIO.PWM(self.gpioNumber, 300) 
+    self.servo.start(20)
+    while (True):
+        if (flag):
+            flag = False
+            self.servo.ChangeFrequency(300)
+            self.servo.ChangeDutyCycle(20)
+        else:
+            flag = True
+            self.servo.ChangeFrequency(90)
+            self.servo.start(20)
+        time.sleep(1)
 
 if __name__ == "__main__":
     main()
