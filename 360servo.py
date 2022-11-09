@@ -98,7 +98,7 @@ class Servo():
         #time.sleep(0.007)
 
 def main():
-    pass
+    servo = Servo()
 
 if __name__ == "__main__":
     main()
