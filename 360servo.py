@@ -42,60 +42,60 @@ class Servo():
                 self.servo.start(20)
             time.sleep(1)
 
-    def initAngle(self, angle):
-        self.servo.ChangeDutyCycle(angle)
-        time.sleep(fullTime)
-        self.servo.ChangeDutyCycle(0)
-        self.saveAngle(angle)
-
-    def stop(self):
-        self.servo.stop()
-
-    def debug(b):
-        self.isDebug = b
-
-    def cleanup(self):
-        GPIO.cleanup()
-
-    def saveAngle(self, angle):
-        """角度を更新する"""
-        self.angle = angle
-
-    def getPreAngle(self):
-        """今の角度を取得する"""
-        return self.angle
-
-    def changeAngle(self, angle):
-        a = angle / 180
-        _0 = minPulse
-        _180 = maxPulse
-        b = _180 - _0
-        c = (a * b) + _0 #制御パルス(%)
-        #print("minPulse=", minPulse, "maxPulse=", maxPulse)
-
-        deffAngle = math.fabs(angle - self.getPreAngle())
-        print("Servo#changeAngle angle=", angle, "Servo#getPreAngle()=", self.getPreAngle())
-        waitTime = baseTime + (variTime * (deffAngle/180))
-        self.saveAngle(angle)
-        self.servoDutyCycle(c, waitTime)
-
-    def addAngle(self, value):
-        newAngle = baseTime + self.getPreAngle() + value
-        if (180 < newAngle or newAngle < 0):
-            print("限界角度です")
-            return False
-        self.changeAngle(newAngle)
-        return True
-
-    def getPWMCycle(self, ms):
-        return np.roots([-ms, 1000])
-
-    def servoDutyCycle(self, value, waitTime):
-        print("Servo#servoDutyCycle value=", value, "waitTime=", waitTime)
-        self.servo.ChangeDutyCycle(value)
-        time.sleep(waitTime)
-        self.servo.ChangeDutyCycle(0)
-        #time.sleep(0.007)
+#    def initAngle(self, angle):
+#        self.servo.ChangeDutyCycle(angle)
+#        time.sleep(fullTime)
+#        self.servo.ChangeDutyCycle(0)
+#        self.saveAngle(angle)
+#
+#    def stop(self):
+#        self.servo.stop()
+#
+#    def debug(b):
+#        self.isDebug = b
+#
+#    def cleanup(self):
+#        GPIO.cleanup()
+#
+#    def saveAngle(self, angle):
+#        """角度を更新する"""
+#        self.angle = angle
+#
+#    def getPreAngle(self):
+#        """今の角度を取得する"""
+#        return self.angle
+#
+#    def changeAngle(self, angle):
+#        a = angle / 180
+#        _0 = minPulse
+#        _180 = maxPulse
+#        b = _180 - _0
+#        c = (a * b) + _0 #制御パルス(%)
+#        #print("minPulse=", minPulse, "maxPulse=", maxPulse)
+#
+#        deffAngle = math.fabs(angle - self.getPreAngle())
+#        print("Servo#changeAngle angle=", angle, "Servo#getPreAngle()=", self.getPreAngle())
+#        waitTime = baseTime + (variTime * (deffAngle/180))
+#        self.saveAngle(angle)
+#        self.servoDutyCycle(c, waitTime)
+#
+#    def addAngle(self, value):
+#        newAngle = baseTime + self.getPreAngle() + value
+#        if (180 < newAngle or newAngle < 0):
+#            print("限界角度です")
+#            return False
+#        self.changeAngle(newAngle)
+#        return True
+#
+#    def getPWMCycle(self, ms):
+#        return np.roots([-ms, 1000])
+#
+#    def servoDutyCycle(self, value, waitTime):
+#        print("Servo#servoDutyCycle value=", value, "waitTime=", waitTime)
+#        self.servo.ChangeDutyCycle(value)
+#        time.sleep(waitTime)
+#        self.servo.ChangeDutyCycle(0)
+#        #time.sleep(0.007)
 
 def main():
     pass
